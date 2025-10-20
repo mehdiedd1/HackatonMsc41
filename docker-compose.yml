@@ -1,0 +1,25 @@
+services:
+  mariadb:
+    build: ./database
+    container_name: mariadb
+    networks:
+      - app-network
+    volumes:
+      - ./database/data:/var/lib/mysql
+    env_file:
+      - database.env
+
+  metabase:
+    image: "metabase/metabase:latest"
+    ports:
+      - "80:3000"
+    networks:
+      - app-network
+    env_file:
+      - metabase.env
+    depends_on:
+      - mariadb
+
+networks:
+  app-network:
+    driver: bridge
