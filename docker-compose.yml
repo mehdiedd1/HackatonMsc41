@@ -11,14 +11,24 @@ services:
 
   metabase:
     image: "metabase/metabase:latest"
-    ports:
-      - "80:3000"
     networks:
       - app-network
     env_file:
       - metabase.env
     depends_on:
       - mariadb
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    volumes:
+      - ./nginx/hak_assets:/hak_assets
+    depends_on:
+      - metabase
 
 networks:
   app-network:
