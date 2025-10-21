@@ -31,3 +31,8 @@ MB_DB_HOST='mariadb'
 ```
 docker compose up --build
 ```
+
+### 4. Access the dashboard
+Open the url http://localhost on your browser and log into metabase with the default account:
+ - email: `admin@example.com`
+ - password: `r00tpass`

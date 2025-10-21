@@ -653,6 +653,12 @@ EOSQL
 	mysql_note "Temporary server stopped"
 }
 
+docker_mariadb_reinit() {
+	docker_temp_server_start "$@"
+	docker_process_init_files /docker-entrypoint-initdb.d/*
+	docker_temp_server_stop "$@"
+}
+
 
 _check_if_upgrade_is_needed() {
 	if [ ! -f "$DATADIR"/mariadb_upgrade_info ]; then
@@ -722,6 +728,8 @@ _main() {
 		#elif mariadb-upgrade --check-if-upgrade-is-needed; then
 		elif _check_if_upgrade_is_needed; then
 			docker_mariadb_upgrade "$@"
+		elif [ -n "$RE_INIT_DATABASE" ]; then
+			docker_mariadb_reinit "$@"
 		fi
 	fi
 	exec "$@"
