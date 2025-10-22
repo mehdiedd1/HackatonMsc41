@@ -27,8 +27,7 @@ Vous pourrez quitter l’environnement plus tard avec `deactivate`.
 
 ### Installer les bibliothèques nécessaires
 ```bash
-python3 -m pip install --upgrade pip
-python3 -m pip install pandas numpy scikit-learn matplotlib
+python3 -m pip install -r requirements.txt
 ```
 
 ---
