@@ -18,7 +18,7 @@ import pandas as pd
 # ==============================
 # 1. IQVIA : doses & actes
 # ==============================
-df_iqvia = pd.read_excel("C:/Users/gmali/Documents/HACKATHON/prediction hackathon/doses-actes.xlsx")
+df_iqvia = pd.read_excel("doses-actes.xlsx")
 
 # Conversion de la date
 df_iqvia['date'] = pd.to_datetime(df_iqvia['date'])
@@ -37,7 +37,7 @@ df_iqvia_month = (
 # ==============================
 # 2. Urgences / SOS
 # ==============================
-df_urg = pd.read_csv("C:/Users/gmali/Documents/HACKATHON/prediction hackathon/grippe-passages-urgences-et-actes-sos-medecin_reg.csv")  # adapte le séparateur si besoin
+df_urg = pd.read_csv("grippe-passages-urgences-et-actes-sos-medecin_reg.csv")
 
 # Conversion de la date
 df_urg['1er jour de la semaine'] = pd.to_datetime(df_urg['1er jour de la semaine'])
@@ -61,7 +61,7 @@ print(df_urg_month.head())
 
 
 
-df_cov = pd.read_csv("C:/Users/gmali/Documents/HACKATHON/prediction hackathon/couvertures-vaccinales-des-adolescents-et-adultes-depuis-2011-region.csv")
+df_cov = pd.read_csv("couvertures-vaccinales-des-adolescents-et-adultes-depuis-2011-region.csv")
 cols_utiles = [
     "Année", "Région", "Grippe moins de 65 ans à risque", "Grippe 65 ans et plus",
     "Grippe 65-74 ans", "Grippe 75 ans et plus",
