@@ -560,6 +560,7 @@ docker_mariadb_init()
 
 	docker_setup_db
 	docker_process_init_files /docker-entrypoint-initdb.d/*
+	generate_metabase_mariadb_connect
 	# Wait until after /docker-entrypoint-initdb.d is performed before setting
 	# root@localhost password to a hash we don't know the password for.
 	if [ -n "${MARIADB_ROOT_PASSWORD_HASH}" ]; then
@@ -656,9 +657,24 @@ EOSQL
 docker_mariadb_reinit() {
 	docker_temp_server_start "$@"
 	docker_process_init_files /docker-entrypoint-initdb.d/*
+	generate_metabase_mariadb_connect
 	docker_temp_server_stop "$@"
 }
 
+generate_metabase_mariadb_connect() {
+	docker_process_sql <<-EOSQL
+		USE MetabaseDB;
+		LOCK TABLES \`metabase_database\` WRITE;
+		/*!40000 ALTER TABLE \`metabase_database\` DISABLE KEYS */;
+		set autocommit=0;
+		INSERT INTO \`metabase_database\` VALUES
+		(2,'2025-10-20 14:41:39.652006','2025-10-20 14:41:40.148985','Datasets',NULL,
+		'{\\"role\\":null,\\"additional-options\\":\\"\\",\\"ssl\\":false,\\"password\\":\\"${MARIADB_PASSWORD}\\",\\"let-user-control-scheduling\\":false,\\"destination-database\\":false,\\"port\\":\\"3306\\",\\"advanced-options\\":true,\\"dbname\\":\\"Datasets\\",\\"host\\":\\"hak41-mariadb\\",\\"tunnel-enabled\\":false,\\"json-unfolding\\":true,\\"user\\":\\"user\\"}','mysql',0x00,0x01,NULL,NULL,'0 46 * * * ? *','0 0 23 * * ? *','UTC',0x00,0x01,NULL,NULL,'complete',13371339,NULL,'{\\"flavor\\":\\"MariaDB\\",\\"version\\":\\"12.0.2-MariaDB-ubu2404\\",\\"semantic-version\\":[12,0]}',0x00,0x00,NULL,NULL,0x00,NULL);
+		/*!40000 ALTER TABLE \`metabase_database\` ENABLE KEYS */;
+		UNLOCK TABLES;
+		commit;
+	EOSQL
+}
 
 _check_if_upgrade_is_needed() {
 	if [ ! -f "$DATADIR"/mariadb_upgrade_info ]; then

@@ -1,7 +1,7 @@
 services:
-  mariadb:
+  hak41-mariadb:
     build: ./database
-    container_name: mariadb
+    container_name: hak41-mariadb
     networks:
       - app-network
     volumes:
@@ -9,18 +9,18 @@ services:
     env_file:
       - database.env
 
-  metabase:
+  hak41-metabase:
     image: "metabase/metabase:latest"
     networks:
       - app-network
     env_file:
       - metabase.env
     depends_on:
-      - mariadb
+      - hak41-mariadb
 
-  nginx:
+  hak41-nginx:
     build: ./nginx
-    container_name: nginx
+    container_name: hak41-nginx
     ports:
       - "80:80"
     networks:
@@ -28,7 +28,7 @@ services:
     volumes:
       - ./nginx/hak_assets:/hak_assets
     depends_on:
-      - metabase
+      - hak41-metabase
 
 networks:
   app-network:

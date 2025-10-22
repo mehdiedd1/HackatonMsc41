@@ -1681,8 +1681,7 @@ LOCK TABLES `core_user` WRITE;
 set autocommit=0;
 INSERT INTO `core_user` VALUES
 (13371338,'internal@metabase.com','Metabase','Internal','$2a$10$MGHYX/WS3pQEG/zNA2.U/efQHKyuHf7dlmgQe4QCGt7HIIN6pCwBW','49c65c78-4f38-4247-80d8-54eb4f0b5514','2025-10-20 14:38:41.000000',NULL,0x00,0x00,NULL,NULL,0x01,NULL,NULL,NULL,NULL,0x01,NULL,'internal',NULL,NULL,NULL,NULL),
-(13371339,'admin@example.com','Admin','Admin','$2a$10$lJnqedKwwaPrsSRbScSR4ePaYxq2IXkJLin9MEpGN6pX0jXmpKMki','e580dd08-fbcc-44d5-a5ff-308a92734b11','2025-10-20 14:39:31.000000','2025-10-21 23:07:33.000000',0x01,0x01,NULL,NULL,0x00,NULL,'2025-10-21 23:07:43.804726',NULL,NULL,0x01,'{\"last-acknowledged-version\":\"v0.56.9\",\"last-used-native-database-id\":\"2\",\"notebook-native-preview-shown\":\"true\",\"dismissed-custom-dashboard-toast\":\"true\",\"show-updated-permission-modal\":\"false\"}','personal','IX_PJ5C4ItsrZcJ6AEXZT',NULL,NULL,NULL),
-(13371340,'api-key-user-2e2378cb-92f9-475b-9fdd-1d75d913787c@api-key.invalid','API','','$2a$10$j0p/GFrsdlZzbvRRo1QQsue8T0CtTBbvsdbcv5H7tGTCoxM74W6hW','d839e9ae-171c-435b-a7ab-2fa1456bc8a0','2025-10-21 20:51:27.000000',NULL,0x01,0x01,NULL,NULL,0x01,NULL,'2025-10-21 20:51:27.870135',NULL,NULL,0x01,'{\"last-acknowledged-version\":\"v0.56.9\"}','api-key','tHl_fTnPN0c0CKudqOm87',NULL,NULL,NULL);
+(13371339,'admin@example.com','Admin','Admin','$2a$10$lJnqedKwwaPrsSRbScSR4ePaYxq2IXkJLin9MEpGN6pX0jXmpKMki','e580dd08-fbcc-44d5-a5ff-308a92734b11','2025-10-20 14:39:31.000000','2025-10-21 23:07:33.000000',0x01,0x01,NULL,NULL,0x00,NULL,'2025-10-21 23:07:43.804726',NULL,NULL,0x01,'{\"last-acknowledged-version\":\"v0.56.9\",\"last-used-native-database-id\":\"2\",\"notebook-native-preview-shown\":\"true\",\"dismissed-custom-dashboard-toast\":\"true\",\"show-updated-permission-modal\":\"false\"}','personal','IX_PJ5C4ItsrZcJ6AEXZT',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `core_user` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -2194,19 +2193,6 @@ CREATE TABLE `metabase_database` (
   CONSTRAINT `fk_metabase_database_metabase_database_id` FOREIGN KEY (`router_database_id`) REFERENCES `metabase_database` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `metabase_database`
---
-
-LOCK TABLES `metabase_database` WRITE;
-/*!40000 ALTER TABLE `metabase_database` DISABLE KEYS */;
-set autocommit=0;
-INSERT INTO `metabase_database` VALUES
-(2,'2025-10-20 14:41:39.652006','2025-10-20 14:41:40.148985','Datasets',NULL,'{\"role\":null,\"additional-options\":\"\",\"ssl\":false,\"password\":\"lU7sdM4tP4pIvayicas4\",\"let-user-control-scheduling\":false,\"destination-database\":false,\"port\":\"3306\",\"advanced-options\":true,\"dbname\":\"Datasets\",\"host\":\"mariadb\",\"tunnel-enabled\":false,\"json-unfolding\":true,\"user\":\"user\"}','mysql',0x00,0x01,NULL,NULL,'0 46 * * * ? *','0 0 23 * * ? *','UTC',0x00,0x01,NULL,NULL,'complete',13371339,NULL,'{\"flavor\":\"MariaDB\",\"version\":\"12.0.2-MariaDB-ubu2404\",\"semantic-version\":[12,0]}',0x00,0x00,NULL,NULL,0x00,NULL);
-/*!40000 ALTER TABLE `metabase_database` ENABLE KEYS */;
-UNLOCK TABLES;
-commit;
 
 --
 -- Table structure for table `metabase_field`
@@ -4632,10 +4618,10 @@ LOCK TABLES `setting` WRITE;
 /*!40000 ALTER TABLE `setting` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `setting` VALUES
-('admin-email','emi.couy@epitech.eu'),
+('admin-email','admin@example.com'),
 ('analytics-uuid','608cb89a-482d-4cde-9943-1dbc6d6745bc'),
 ('anon-tracking-enabled','false'),
-('custom-geojson','{\"5bee6d98-2d6b-f3ef-e4f9-f0cdfac49931\":{\"name\":\"France\",\"url\":\"http://nginx/hak_assets/regions.geojson\",\"region_key\":\"code\",\"region_name\":\"nom\"}}'),
+('custom-geojson','{\"5bee6d98-2d6b-f3ef-e4f9-f0cdfac49931\":{\"name\":\"France\",\"url\":\"http://hak41-nginx/hak_assets/regions.geojson\",\"region_key\":\"code\",\"region_name\":\"nom\"}}'),
 ('custom-homepage','true'),
 ('custom-homepage-dashboard','2'),
 ('embedding-homepage','visible'),
